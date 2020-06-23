@@ -1,0 +1,19 @@
+{
+  "name": "api-rest-docker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "nodemon": "^2.0.4",
+    "sucrase": "^3.15.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
