@@ -1,6 +1,11 @@
-import express from "express";
+import dotenv from "dotenv";
 
+dotenv.config();
+
+import express from "express";
 import homeRoutes from "./src/routes/home";
+import "./src/database"; // Vai ser executado automaticamente
+
 // Estrutura de app com classes, só pra variar um pouco
 class App {
   constructor() {
