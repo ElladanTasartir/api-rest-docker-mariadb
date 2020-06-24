@@ -18,5 +18,5 @@ module.exports = {
   dialectOptions: {
     timezone: "America/Sao_Paulo",
   },
-  timezone: "America_/Sao_Paulo",
+  timezone: "America/Sao_Paulo",
 };
