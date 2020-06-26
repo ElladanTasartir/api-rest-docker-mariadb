@@ -4,7 +4,10 @@ class UserController {
   async store(req, res) {
     try {
       const novoUser = await User.create(req.body);
-      return res.json(novoUser);
+
+      const { id, nome, email } = novoUser;
+
+      return res.json({ id, nome, email });
     } catch (err) {
       return res
         .status(400)
@@ -14,8 +17,8 @@ class UserController {
 
   async index(req, res) {
     try {
-      console.log(req.userId, req.userEmail);
-      const users = await User.findAll();
+      // campos que serão exibidos
+      const users = await User.findAll({ attributes: ["id", "nome", "email"] });
       return res.json(users);
     } catch (err) {
       return res.json(null);
@@ -25,7 +28,9 @@ class UserController {
   async show(req, res) {
     try {
       const { id } = req.params;
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(id, {
+        attributes: ["id", "nome", "email"],
+      });
       return res.json(user);
     } catch (err) {
       return res.json(null);
@@ -34,11 +39,8 @@ class UserController {
 
   async update(req, res) {
     try {
-      const { id } = req.params;
-
-      if (!id) return res.status(400).json({ errors: ["Id não enviado"] });
-
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
+      // pega o id vindo do payload para recuperar os dados
 
       if (!user)
         return res.status(400).json({
@@ -47,7 +49,9 @@ class UserController {
 
       const newUser = await user.update(req.body);
 
-      return res.json(newUser);
+      const { id, nome, email } = newUser;
+
+      return res.json({ id, nome, email });
     } catch (err) {
       return res
         .status(400)
@@ -57,11 +61,7 @@ class UserController {
 
   async delete(req, res) {
     try {
-      const { id } = req.params;
-
-      if (!id) return res.status(400).json({ errors: ["Id não enviado"] });
-
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
 
       if (!user)
         return res.status(400).json({
@@ -70,7 +70,7 @@ class UserController {
 
       await user.destroy();
 
-      return res.json(user);
+      return res.json(null);
     } catch (err) {
       return res
         .status(400)
