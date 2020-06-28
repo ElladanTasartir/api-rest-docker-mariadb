@@ -7,6 +7,7 @@ import homeRoutes from "./src/routes/home";
 import userRoutes from "./src/routes/user";
 import tokenRoutes from "./src/routes/token";
 import alunoRoutes from "./src/routes/aluno";
+import photoRoutes from "./src/routes/photo";
 import "./src/database"; // Vai ser executado automaticamente
 
 // Estrutura de app com classes, só pra variar um pouco
@@ -27,6 +28,7 @@ class App {
     this.app.use("/users", userRoutes);
     this.app.use("/tokens", tokenRoutes);
     this.app.use("/alunos", alunoRoutes);
+    this.app.use("/photos", photoRoutes);
   }
 }
 
