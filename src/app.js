@@ -4,12 +4,12 @@ import { resolve } from "path";
 dotenv.config();
 
 import express from "express";
-import homeRoutes from "./src/routes/home";
-import userRoutes from "./src/routes/user";
-import tokenRoutes from "./src/routes/token";
-import alunoRoutes from "./src/routes/aluno";
-import photoRoutes from "./src/routes/photo";
-import "./src/database"; // Vai ser executado automaticamente
+import homeRoutes from "./routes/home";
+import userRoutes from "./routes/user";
+import tokenRoutes from "./routes/token";
+import alunoRoutes from "./routes/aluno";
+import photoRoutes from "./routes/photo";
+import "./database"; // Vai ser executado automaticamente
 
 // Estrutura de app com classes, só pra variar um pouco
 class App {
