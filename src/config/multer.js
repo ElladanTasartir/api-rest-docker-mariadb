@@ -16,7 +16,7 @@ export default {
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
       // recebe a requisição, um arquivo e um callback
-      cb(null, resolve(__dirname, "..", "..", "uploads"));
+      cb(null, resolve(__dirname, "..", "..", "uploads", "images"));
       // primeiro parâmetro é um erro, então podemos enviar null para sucesso
     },
     filename: (req, file, cb) => {

@@ -70,4 +70,8 @@ export default class Aluno extends Model {
     ); // Um objeto contem os campos e o outro o sequelize
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Photo, { foreignKey: "aluno_id" });
+  }
 }

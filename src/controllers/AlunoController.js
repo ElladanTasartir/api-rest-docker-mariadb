@@ -1,8 +1,28 @@
 import Aluno from "../models/Aluno";
+import Photo from "../models/Photo";
 
 class AlunoController {
   async index(req, res) {
-    const alunos = await Aluno.findAll();
+    const alunos = await Aluno.findAll({
+      attributes: [
+        "id",
+        "nome",
+        "sobrenome",
+        "email",
+        "idade",
+        "peso",
+        "altura",
+      ],
+      include: {
+        model: Photo,
+        attributes: ["url", "filename"],
+      },
+      order: [
+        ["id", "DESC"],
+        [Photo, "id", "DESC"],
+      ],
+      // Um array dentro de um array, pois podemos ter mais de um tipo de ordenação
+    });
     res.json(alunos);
   }
 
@@ -44,7 +64,25 @@ class AlunoController {
 
       if (!id) return res.status(400).json({ errors: ["Faltando ID"] });
 
-      const aluno = await Aluno.findByPk(id);
+      const aluno = await Aluno.findByPk(id, {
+        attributes: [
+          "id",
+          "nome",
+          "sobrenome",
+          "email",
+          "idade",
+          "peso",
+          "altura",
+        ],
+        include: {
+          model: Photo,
+          attributes: ["url", "filename"],
+        },
+        order: [
+          ["id", "DESC"],
+          [Photo, "id", "DESC"],
+        ],
+      });
 
       if (!aluno) return res.status(400).json({ errors: ["Aluno não existe"] });
 
