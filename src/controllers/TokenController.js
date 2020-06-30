@@ -21,7 +21,14 @@ class TokenController {
       expiresIn: process.env.TOKEN_EXPIRATION,
     }); // recebe o payload, secret e opções
 
-    return res.json({ token });
+    return res.json({
+      token,
+      user: {
+        nome: user.nome,
+        id,
+        email,
+      },
+    });
   }
 }
 export default new TokenController();
